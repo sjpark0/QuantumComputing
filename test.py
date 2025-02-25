@@ -1,7 +1,7 @@
 from qiskit import QuantumCircuit, transpile
 from qiskit.visualization import plot_histogram
 from qiskit_aer import AerSimulator
-from qiskit.circuit.library import PhaseEstimation
+from qiskit.circuit.library import phase_estimation
 import numpy as np
 from math import gcd
 
@@ -21,7 +21,8 @@ def run_shor(N, a):
     unitary = modular_exponentiation(a, 1, N)
 
     # Phase Estimation 회로 생성
-    pe = PhaseEstimation(num_counting_qubits, unitary)
+    #pe = PhaseEstimation(num_counting_qubits, unitary)
+    pe = phase_estimation(num_counting_qubits, unitary)
     qc = QuantumCircuit(num_counting_qubits + num_work_qubits, num_counting_qubits)
 
     # 전체 회로 구성
